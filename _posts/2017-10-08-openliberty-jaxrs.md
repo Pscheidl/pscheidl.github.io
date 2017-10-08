@@ -11,8 +11,6 @@ tags:
   - OpenLiberty
 ---
 
-*Sample application is built as a part of this article. It can be found on [GitHub](https://github.com/Pscheidl/openliberty-jaxrs-example)*.
-
 Year 2017 and we're all building microservices, where shared runtime environment represented by a single application server hosting many applications is [passé](https://www.merriam-webster.com/dictionary/pass%C3%A9). As a result, rightsizing application environment makes sense ! The functionality is still required, but not all at once by a single application, if ever. Therefore, the packaging and distribution changed, as mentioned in one of my [previous posts](http://www.pavel.cool/javaee/java-ee-fatjars-docker/). However, the obvious and most simple way to just pack everything into one Fatjar comes with long redeployment times and developers stuck waiting for something to reload, when an application server provides the environment already running and redeploying the business logic takes just few millisecons. A Java rockstar Adam Bien von München is pointing this fact out for a long and if you'd like to know more, watch his video on [Thin WARs, Java EE 7, Docker and Productivity](https://www.youtube.com/watch?v=5N4EUDhrkec). Java EE offers many solutions so far.
 
 - [WildFly Swarm](http://wildfly-swarm.io/)
@@ -25,6 +23,8 @@ And now, one more player appears. It's called [OpenLiberty](https://openliberty.
 OpenLiberty.io [addresses](https://openliberty.io/about/) a common fear of many developers - long reload times. It is fast to start and provides dynamic code update capabilities.
 
 ## Building sample application
+
+*Sample application is built as a part of this article. It can be found on [GitHub](https://github.com/Pscheidl/openliberty-jaxrs-example)*.
 
 I belive I've [written enough](http://www.pavel.cool/javaee/java-ee-fatjars-docker/) theory articles on packaging, fast redeployments and good engineering practices in Java application packaging. Time to offer something practical. Commercial break: If you want to read more on both theory and practice, our new book [Java EE 8 MicroServices](https://www.packtpub.com/application-development/java-ee-8-microservices) is available for pre-order. Spring Boot is covered in the book.
 
