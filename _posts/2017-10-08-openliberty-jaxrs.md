@@ -286,7 +286,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 @Path("/ping")
-public class HealthCheck {
+public class PingPong {
 
     @GET
     public Response ping() {
@@ -322,7 +322,7 @@ main
 │   │       └── pavel
 │   │           └── openliberty
 │   │               └── api
-│   │                   ├── HealthCheck.java
+│   │                   ├── PingPong.java
 │   │                   └── MicroserviceConfiguration.java
 ```
 
@@ -346,7 +346,7 @@ In order to configure OpenLiberty server, create `server.xml` file in `{project-
 ```
 
 
-The `<featureManager>` part contains a list of features to be included in the created runtime. Basic configuration also contains default host and port bindings and path to applications to be contained in the resulting package. Besides `<webApplication ...>` tag, it is also possible to use `<enterpriseApplication ...>` tag to deploy Enterprise Archives, if required.
+The `<featureManager>` part contains a list of features to be included in the created runtime. Basic configuration also contains default host and port bindings and path to applications to be contained in the resulting package. Besides `<webApplication ...>` tag, it is also possible to use `<enterpriseApplication ...>` tag to deploy Enterprise Archives, if required. If you're looking for a complete list of features available, there is no official list yet. But, a list of features can be found directly in the [/dev folder on GitHub](https://github.com/OpenLiberty/open-liberty/tree/integration/dev).
 
 With the `server.xml` file, the `main` folder's content looks as follows. Nothing more is added to the project in order to run it. In this state, the application/microservice is fully functional.
 
@@ -359,7 +359,7 @@ With the `server.xml` file, the `main` folder's content looks as follows. Nothin
 │   │       └── pavel
 │   │           └── openliberty
 │   │               └── api
-│   │                   ├── HealthCheck.java
+│   │                   ├── PingPong.java
 │   │                   └── MicroserviceConfiguration.java
 │   ├── liberty
 │   │   └── config
@@ -388,7 +388,7 @@ When invoking HTTP GET on `http://localhost:9080/openliberty-jaxrs-example/ping`
 
 ### Redeploy
 
-Now comes the fun part. Let's change the endpoint and see how fast OpenLiberty updates the application with the latest changes. A new method producing response message is introduced to make distinguish OpenLiberty from simple HotSwap solutions. Also, the response changes from HTTP 200 OK to HTTP 202 Accepted. The final shape of the `HealthCheck` class can be found in the figure below.
+Now comes the fun part. Let's change the endpoint and see how fast OpenLiberty updates the application with the latest changes. A new method producing response message is introduced to make distinguish OpenLiberty from simple HotSwap solutions. Also, the response changes from HTTP 200 OK to HTTP 202 Accepted. The final shape of the `PingPong` class can be found in the figure below.
 
 
 ```java
@@ -399,7 +399,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 @Path("/ping")
-public class HealthCheck {
+public class PingPong {
 
     @GET
     public Response ping() {
