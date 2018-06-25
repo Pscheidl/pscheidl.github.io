@@ -79,7 +79,7 @@ author:
   name             : "Pavel Pscheidl"
   avatar           : "images/bio-photo.jpg"
   bio              : ""
-  location         : "Prague"
+  location         : #""
   email            : #"pavel.junior@pscheidl.cz"
   uri              : "https://github.com/Pscheidl"
   bitbucket        :
