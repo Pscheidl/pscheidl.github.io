@@ -1,6 +1,7 @@
 ---
 title: "Integrating JavaFX 8 with Guice dependency injection"
 published: true
+classes: wide
 categories:
   - Java
 tags:

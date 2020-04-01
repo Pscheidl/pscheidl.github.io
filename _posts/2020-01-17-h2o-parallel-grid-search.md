@@ -1,6 +1,7 @@
 ---
 title: "Parallel Grid Search in H2O"
 published: true
+classes: wide
 categories:
   - H2O-3
 tags:

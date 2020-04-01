@@ -1,6 +1,7 @@
 ---
 title: "Logging in Java EE"
 published: true
+classes: wide
 categories:
   - JEE-Tips
 tags:

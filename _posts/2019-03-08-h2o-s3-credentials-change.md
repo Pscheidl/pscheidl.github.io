@@ -1,6 +1,7 @@
 ---
 title: "Connecting to multiple S3 buckets with H2O"
 published: true
+classes: wide
 categories:
   - H2O-3
 tags:

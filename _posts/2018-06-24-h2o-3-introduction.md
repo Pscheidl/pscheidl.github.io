@@ -1,6 +1,7 @@
 ---
 title: "Machine learning with H2O - Hands-on guide for data scientists"
 published: true
+classes: wide
 categories:
   - Machine learning
   - AI

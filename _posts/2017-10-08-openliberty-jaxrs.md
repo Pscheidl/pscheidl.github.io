@@ -1,6 +1,7 @@
 ---
 title: "OpenLiberty.io: Simple guide"
 published: true
+classes: wide
 categories:
   - JavaEE
   - EE4J

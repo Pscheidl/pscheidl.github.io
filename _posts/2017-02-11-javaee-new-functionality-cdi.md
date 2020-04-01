@@ -1,6 +1,7 @@
 ---
 title: "The source of new Java EE functionality: CDI and beyond"
 published: true
+classes: wide
 categories:
   - JavaEE
 tags:

@@ -1,6 +1,7 @@
 ---
 title: "CDI Events overview"
 published: true
+classes: wide
 categories:
   - JavaEE
 tags:

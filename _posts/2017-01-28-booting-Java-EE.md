@@ -1,6 +1,7 @@
 ---
 title: "Booting Enterprise Java"
 published: true
+classes: wide
 categories:
   - JavaEE
 tags:

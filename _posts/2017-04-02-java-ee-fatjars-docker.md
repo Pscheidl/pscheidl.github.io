@@ -1,6 +1,7 @@
 ---
 title: "Building, packaging and distributing Java EE applications in 2017"
 published: true
+classes: wide
 categories:
   - JavaEE
 tags:

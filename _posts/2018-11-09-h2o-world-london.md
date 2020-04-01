@@ -1,6 +1,7 @@
 ---
 title: "H2O World London"
 published: true
+classes: wide
 categories:
   - H2O-3
 tags:
