@@ -91,6 +91,17 @@ cluster and waits for the clustering to be over before the main H2O program is a
 **Key takeaway:** H2O is able to cluster itself inside Kubernetes service using tools native to Kubernetes - services and environment variables.
 No other tools required.
 
+### Leader node exposure
+
+In order to ensure reproducibility, all requests should be directed towards H2O Leader node. Leader node election is done
+after the node discovery process is completed. Therefore, after the clustering is formed and the leader node is known,
+only the pod with H2O leader node should be made available. This also makes the service(s) on top of the deployment route
+all requests only to the leader node. To achieve that, readiness probe residing on `/kubernetes/isLeaderNode` address is used.
+Once the clustering is done, all nodes but the leader node mark themselves as not ready, leaving only the leader node exposed.
+
+**Key takeaway:** To ensure reproducibility, only the leader not should be contacted. Readiness probe ensures only the
+leader node is reachable via the corresponding service.
+
 ## Running H2O in Kubernetes cluster
 
 In order to spawn H2O cluster inside a Kubernetes cluster, the following list of requirements must be met:
@@ -186,6 +197,13 @@ spec:
           ports:
             - containerPort: 54321
               protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /kubernetes/isLeaderNode
+              port: 8081
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 1
           env:
           - name: H2O_KUBERNETES_SERVICE_DNS
             value: h2o-service.h2o-statefulset.svc.cluster.local
@@ -193,6 +211,8 @@ spec:
             value: '180'
           - name: H2O_NODE_EXPECTED_COUNT
             value: '3'
+          - name: H2O_KUBERNETES_API_PORT
+            value: '8081'
 ```
 Besides standardized Kubernetes settings, like `replicas: 3` defining the number of pods with H2O instantiated, there are
 several settings to pay attention to.
@@ -200,6 +220,10 @@ several settings to pay attention to.
 The name of the application `app: h2o-k8s` must correspond to the name expected by the above-defined headless service in order
 for the H2O node discovery to work. H2O communicates on port 54321, therefore `containerPort: 54321`must be exposed to
 make it possible for the clients to connect.
+
+The readiness probe residing on `/kubernetes/isLeaderNode` makes sure only the leader node is exposed once the cluster is formed
+by making all nodes but the leader node not available. Default port for H2O Kubernetes API is 8080. In the example, an optional
+environment variable changes the port to `8081`.
 
 **Environment variables:**
 
@@ -209,6 +233,7 @@ make it possible for the clients to connect.
   to match the specifics of your Kubernetes implementation.
 1. `H2O_NODE_LOOKUP_TIMEOUT` - **[OPTIONAL]** Node lookup constraint. Time before the node lookup is ended. 
 1. `H2O_NODE_EXPECTED_COUNT` - **[OPTIONAL]** Node lookup constraint. Expected number of H2O pods to be discovered.
+1. `H2O_KUBERNETES_API_PORT` - **[OPTIONAL]** Port for Kubernetes API checks and probes to listen on. Defaults to 8080.
 
 If none of the optional lookup constraints is specified, a sensible default node lookup timeout will be set - currently
 defaults to 3 minutes. If any of the lookup constraints are defined, the H2O node lookup is terminated on whichever 
