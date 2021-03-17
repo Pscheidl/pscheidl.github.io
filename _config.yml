@@ -97,7 +97,7 @@ author:
   name             : "Pavel Pscheidl"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : ""
-  location         : "Czech Republic"
+  location         :
   email            :
   links:
     - label: "Email"
