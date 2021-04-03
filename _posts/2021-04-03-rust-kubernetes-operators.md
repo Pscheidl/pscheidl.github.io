@@ -428,6 +428,8 @@ First, make sure the Kubernetes cluster is running and the Kubeconfig contains a
 
 Finally, a custom `Echo` resource can be created with `kubectl apply -f echo-example.yaml`. A new deployment of two pods with `Echo` REST API service will be created. This can be checked with the `kubectl get pods` or `kubectl get deployments` command.
 
+![Kubernetes Operator usage showcase](https://www.pavel.cool/images/2021-04-03-rust-kubernetes-operators/showcase.gif)
+
 ## Additional resources
 
 A German company [Stackable.de](https://www.stackable.de/) creates [many operators](https://github.com/stackabletech) in Rust, with common code shared in [operator-rs](https://github.com/stackabletech/operator-rs). These are all based on the `kube` crate.
