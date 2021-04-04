@@ -88,7 +88,7 @@ spec:
 
 *Note: The CRD could be applied to the Kubernetes cluster by the operator itself. This scenario is of little use in the real world, as the user/service account the operator runs under doesn't have permissions to manipulate CRDs. Therefore, it must be applied manually. Some standardized service like [OperatorHub.io](https://operatorhub.io/) or [OpenShift certified operators](https://catalog.redhat.com/software/operators/explore) make this process less painful for the user by automating the CRD creation, yet the principle remains the same: the running operator doesn't have the privileges to manipulate its own CRD.*
 
-Use `kubectl apply -f echoes.pavel.cool.yaml` to create the CRD in Kubernetes. use `kubectl get crds` to verify.
+Use `kubectl apply -f echoes.example.com.yaml` to create the CRD in Kubernetes. use `kubectl get crds` to verify.
 
 
 ### How Kubernetes and Operator work together
