@@ -433,3 +433,6 @@ Finally, a custom `Echo` resource can be created with `kubectl apply -f echo-exa
 A German company [Stackable.de](https://www.stackable.de/) creates [many operators](https://github.com/stackabletech) in Rust, with common code shared in [operator-rs](https://github.com/stackabletech/operator-rs). These are all based on the `kube` crate.
 
 Also, the `kube` crate itself provides an always up-to-date [examples](https://github.com/clux/kube-rs/tree/master/examples) directory.
+
+## Credits
+Thank you [Guillaume Calmettes](https://github.com/gcalmettes) for fixing typos and formatting improvements [PR](https://github.com/Pscheidl/pscheidl.github.io/pull/10).
