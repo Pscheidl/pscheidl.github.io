@@ -168,7 +168,7 @@ let kubernetes_client: Client = Client::try_default()
     .expect("Expected a valid KUBECONFIG environment variable.");
 ```
 
-Without Kubernetes client, the operator couldn't function and there's much to be done about this. Therefore the simple error handling using `expect` on a `Result` coming out of the `try_default` function.
+Without Kubernetes client, the operator couldn't function and there isn't much to be done about this. Therefore the simple error handling using `expect` on a `Result` coming out of the `try_default` function.
 
 The `ListParams` instance is created to tell the Controller how to list and whether to filter out the `Echo` custom resource. A default instance equals listing all `Echo` resources.
 
@@ -219,7 +219,7 @@ See the `Echo` CRD definition in the [crd.rs](https://github.com/Pscheidl/rust-k
 
 ### Implementing the operator logic
 
-The purpose of the `Echo` operator is to spawn REST API echo services - a simple service that repeats the content of a http request. And the number of pods correspodns to the number of `replicas` set. To keep things simple, this example operator uses a `Deployment` to achieve that. The deployment will consist of `n` pods, each with [inanimate/echo-server](https://hub.docker.com/r/inanimate/echo-server/) docker container running inside.
+The purpose of the `Echo` operator is to spawn REST API echo services - a simple service that repeats the content of a http request. And the number of pods corresponds to the number of `replicas` set. To keep things simple, this example operator uses a `Deployment` to achieve that. The deployment will consist of `n` pods, each with [inanimate/echo-server](https://hub.docker.com/r/inanimate/echo-server/) docker container running inside.
 
 Such a logic should be hidden in the `reconcile` `FnMut` accepted by the `run` method of a `kube_runtime::Controller`.
 
@@ -312,7 +312,7 @@ enum Action {
 }
 ```
 
-Create simply means to create a deployment with the Echo service pods, Delete means there is a delition timestamp on the `Echo` resource and subresources must be deleted first. Finally, NoOp means the resource is in desired state and nothing should be done.
+Create simply means to create a deployment with the Echo service pods, Delete means there is a deletion timestamp on the `Echo` resource and subresources must be deleted first. Finally, NoOp means the resource is in desired state and nothing should be done.
 
 How does the `determine_action` function, defined as 
 
@@ -365,9 +365,7 @@ Finalizers are a simple array of strings in resource's metadata. Creation and de
 
 The operator creates a deployment with `n` pods running `inanimate/echo-server:latest` docker image inside on `Action::Create` and deletes it on `Action::Delete`. The complete source code for echo deployment creation and deletion can be found in the [echo.rs](https://github.com/Pscheidl/rust-kubernetes-operator-example/blob/master/src/echo.rs) file.
 
-Once again, the `Api<T>` struct instance type to `T = Deployment` is used: `let deployment_api: Api<Deployment> = Api::namespaced(client, namespace);`. The Deployment is created in the namespace defined in the `Echo` resource's metadata using `    deployment_api
-.create(&PostParams::default(), &deployment)
-.await`
+Once again, the `Api<T>` struct instance type to `T = Deployment` is used: `let deployment_api: Api<Deployment> = Api::namespaced(client, namespace);`. The Deployment is created in the namespace defined in the `Echo` resource's metadata using `deployment_api.create(&PostParams::default(), &deployment).await`
 
 *Note: See how every interaction with Kubernetes API is represented by a Future. Many operations may be handled concurrently/in parallel easily, resulting in great performance.*
 
