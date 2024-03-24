@@ -32,7 +32,7 @@ copyright:
     template: "Copyright 2024 Pavel Pscheidl. All rights reserved. Citations are welcome."
 
 
-meta: ...
+meta: # Meta information
 
 not_found:
   statment: Sorry, we've misplaced that URL or it's pointing to something that doesn't exist.
